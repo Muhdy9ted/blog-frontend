@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState, useMemo } from 'react';
+import { withRouter } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from "@mui/material/CssBaseline";
+
+import routes from './routes';
+import getDesignTokens from './theme';
+
+export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 function App() {
+  
+  const [mode, setMode] = useState('light');
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
+
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />   
+        {routes}
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 
-export default App;
+export default withRouter(App);
