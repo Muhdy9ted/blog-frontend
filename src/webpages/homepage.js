@@ -8,6 +8,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useErrorHandler } from 'react-error-boundary';
 
 import {ColorModeContext}  from '../App';
+import Navbar from '../components/navbar/navbar';
 
 export default function Homepage() {
     const theme = useTheme();
@@ -21,6 +22,8 @@ export default function Homepage() {
     // }
     
     return (
+        <>
+            <Navbar />
         <div>
             {theme.palette.mode} mode
             <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
@@ -34,5 +37,6 @@ export default function Homepage() {
                 <Button variant="outlined">Outlined</Button>
             </Stack>
         </div>
+        </>
     )
 }

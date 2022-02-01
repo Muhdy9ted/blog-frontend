@@ -96,7 +96,18 @@ const getDesignTokens = (mode) => ({
                 }              
             }
         ),
-    }
+    },
+    // component: {
+    //     MUIFab: {
+    //         styleOverrides: {
+    //            secondary: {
+    //                '&:hover':{
+    //                    color: 'white'
+    //                }
+    //            }
+    //         }
+    //     }
+    // }
 });
 
 

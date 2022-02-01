@@ -1,14 +1,21 @@
 @import 'variables';
 @import 'mixins';
 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html, body {
     height: 100%;
     overflow:hidden;
 }
 
 body { 
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-family: $font-stack;
+    background-color: $background-color;
 }
 
 ::-webkit-scrollbar {
