@@ -22,17 +22,32 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import CloseIcon from '@mui/icons-material/Close';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import TextField from '@mui/material/TextField';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+
+//theming light and dark mode 
+import { useTheme } from '@mui/material/styles';
+import { ColorModeContext } from '../../App';
 
 import { mainColor } from '../../theme/colors';
 import classes from './navbar.module.scss';
 
 
-const links = ['News', 'Music', 'Sport', 'Style'];
+const links = ['News', 'Music', 'Sport', 'Style', 'Login'];
 
 function Navbar(){
-
+    const theme = useTheme();
+    const colorMode = React.useContext(ColorModeContext);
     const [slideSide, setSlideSide] = useState({left: false});
     const [slideSide2, setSlideSide2] = useState({top: false});
+
+    const socials = [<FacebookIcon />, <TwitterIcon />, <PinterestIcon />, <InstagramIcon />, <YouTubeIcon />]
 
 
     const toggleSideMenu = (open) => (event) => {
@@ -52,42 +67,57 @@ function Navbar(){
     };
 
     const SideMenu = (anchor='left') => (
-        <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }} role="presentation" onClick={toggleSideMenu(false)} onKeyDown={toggleSideMenu(false)}>
-            <List>
-                {links.map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
+        <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : '100vw', minHeight: '100vh', overflow: 'hidden' }} role="presentation" onClick={toggleSideMenu(false)} onKeyDown={toggleSideMenu(false)} className={classes.sideMenu}> 
+            
+            <div className={classes.header}>
+                <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} className={classes.navLogo}>
+                    e-chokenaija
+                </Typography>
+                <CloseIcon onClick={toggleSideMenu(false)} color='primary' sx={{ fontSize: 40, mr: 2}}/>
+            </div>
+            
+            <List className={classes.list}>
+                {links.map((text) => (
+                    <div key={text}>
+                        <ListItem button>
+                            <ListItemText primary={text}  className={classes.listItem}/>
+                        </ListItem>
+                        <Divider />
+                    </div>
                 ))}
             </List>
-            <Divider />
+
+            <div className={classes.footer}>
+                <Typography variant="h6" noWrap component="div" className={classes.title}>
+                    connect with us
+                </Typography>
+
+                <List className={classes.socials}>
+                    {socials.map((social, i) => (
+                        <ListItem button key={i} className={classes.listItem}>
+                            <ListItemIcon className={classes.icons}>
+                                {social}
+                            </ListItemIcon>
+                        </ListItem>
+                    ))}
+                </List>
+            </div>
         </Box>
     );
 
     const TopSearch = (anchor='top') => (
-        <Box sx={{ width: '100vw', height: '100vh', backgroundColor: 'black', opacity: 0.6 }} role="presentation" onClick={toggleSideMenu2(false)} onKeyDown={toggleSideMenu2(false)}>
-            <CloseIcon onClick={toggleSideMenu2(false)} fontSize='large' sx={{color: 'white', marginLeft: '75vw', fontSize: 80, mt:1}}/>
-            <List>
-                {links.map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
+        <Box role="presentation" className={classes.topSearch}>
+            <CloseIcon onClick={toggleSideMenu2(false)} fontSize='large' className={classes.closeIcon} />
+            <Box component="form" noValidate autoComplete="off" className={classes.form}>
+                <TextField id="standard-basic" label="Search" variant="standard" color='primary' className={classes.inputField} />
+            </Box>
         </Box>
     );
 
 
     return(
 
-        <AppBar position="static" enableColorOnDark color='transparent'>
+        <AppBar position="static" enableColorOnDark color='transparent' className={classes.appBar}>
             <Container maxWidth="xl">
 
                 <Toolbar disableGutters>
@@ -133,6 +163,12 @@ function Navbar(){
                         </Drawer>
                     </Box>
 
+                    <Box sx={{ flexGrow: 0 }}>
+                        {/* {theme.palette.mode} mode */}
+                        <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+                            {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                        </IconButton>
+                    </Box>
                 </Toolbar>
 
             </Container>

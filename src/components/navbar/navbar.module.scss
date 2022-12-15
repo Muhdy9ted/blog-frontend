@@ -1,4 +1,125 @@
-.navLogo{
-    font-weight: 300;
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+%navLogo{
     font-style: italic;
+    font-weight: 300;
+
+    &:hover{
+        transform: scale(1.3);
+    }
+}
+
+.display-none{
+    display: none;
+}
+
+
+
+.appBar{
+    .navLogo{
+        @extend %navLogo;
+    }
+}
+
+.sideMenu{
+    .header{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0.5rem;
+        align-items: center
+    }
+
+    .navLogo{
+        @extend %navLogo;
+        justify-content: center;
+    }
+
+    .list{
+        margin-top: 1rem;
+
+        .listItem span{
+           font-weight: 500;
+           font-size: 0.9rem;
+           line-height: 1.5;
+           text-transform: uppercase; 
+           color: $link-color;
+        }
+    }
+
+    .footer{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 0;
+        top: calc(100vh - 60%);
+        flex-direction: column;
+
+        .title{
+            text-align: center;
+            font-size: .7rem;
+            font-weight: 400;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            margin-bottom: 3px; 
+        }
+
+        .socials{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 90%;
+            margin: 0 auto;
+
+            .listItem{
+                width: 20px;
+                height: 20px;
+                margin: 5px 15px;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.topSearch{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.94);
+    position: relative;
+
+    .closeIcon{
+        position: absolute;
+        color: white;
+        top: 8px;
+        right: 5%;
+        font-size: 60px;
+    }
+
+    .form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+
+        label{
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 23px;
+        }
+
+        div::before{
+            border-bottom: 2px solid $primary-color;
+        }
+
+        input{
+            color: white;
+            font-weight: 500;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+    }
 }

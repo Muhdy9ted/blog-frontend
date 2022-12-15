@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from "@mui/material/CssBaseline";
 import { ErrorBoundary } from 'react-error-boundary';
 
-import routes from './routes';
+import routes from './routes/routes';
 import getDesignTokens from './theme';
 import Fallback from './webpages/fallback';
 

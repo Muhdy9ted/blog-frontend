@@ -3,12 +3,15 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import CircularProgress from '@mui/material/CircularProgress';
 
-const HomePage = lazy(() => import('./webpages/homepage'));
+const UserLayout = lazy(() => import('../layouts/userLayout'));
+const AdminLayout = lazy(() => import('../layouts/adminLayout'));
+
 
 let routes = (
     <Suspense fallback={<CircularProgress color='secondary' />}>
         <Switch>
-            <Route exact path= '/' component={HomePage} />
+            <Route exact path= '/' component={UserLayout} />
+            <Route exact path= '/admin' component={AdminLayout} />
             <Redirect to='/' />
         </Switch>
     </Suspense>

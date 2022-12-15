@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 import Swal from 'sweetalert2';
 
 
-export const clientUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3002' : 'http://localhost:3002';
+export const clientUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3002' : 'https://blog-rest-apis.herokuapp.com/';
 
 const axiosInstance = axios.create({baseURL: clientUrl});
 

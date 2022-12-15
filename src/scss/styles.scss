@@ -1,6 +1,19 @@
 @import 'variables';
 @import 'mixins';
 
+/****************************************************************/
+/* CUSTOMIZED BOOTSTRAP DEFAULTS*/
+/***************************************************************/
+
+$body-bg: $background-color;
+$font-family-sans-serif: $font-stack;
+$primary: $primary-color;
+$secondary: $secondary-color;
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+/**************************************************************/
+
 
 * {
     margin: 0;
@@ -16,6 +29,10 @@ html, body {
 body { 
     font-family: $font-stack;
     background-color: $background-color;
+}
+
+a {
+    text-decoration: none;
 }
 
 ::-webkit-scrollbar {
